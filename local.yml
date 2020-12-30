@@ -39,3 +39,25 @@ user_name: leonardo
       dest: /home/{{user_name}}/.bashrc
       owner: {{user_name}}
       group: {{user_name}}
+      
+## In case we want to automate an ansible user which checks periodically 
+## id there are changes in the repository and executes the playbook       
+#  - name: add ansible user
+#    user:
+#      name: velociraptor
+#      system: yes
+#
+#  - name: set up sudo for ansible user
+#    copy:
+#      src: files/sudoer_velociraptor
+#      dest: /etc/sudoers.d/velociraptor
+#      owner: root
+#      group: root
+#      mode: 0440
+#
+#  - name: add ansible-pull cron job
+#    cron:
+#      name: ansible auto-provision
+#      user: velociraptor
+#      minute: "*/10"
+#      job: ansible-pull -o -U [REPLACE WITH URL]
