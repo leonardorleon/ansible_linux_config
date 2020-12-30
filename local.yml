@@ -1,4 +1,6 @@
 ---
+user_name: leonardo
+
 - host: localhost
   connection: local
   become: true
@@ -9,6 +11,8 @@
       name: 
         - htop
         - tmux
+        # to allow dconf to function
+        - python3-psutil
         
   - name: copy wallpaper file
     copy:
@@ -18,11 +22,20 @@
       group: root
       
   - name: set wallpaper
+    become_user: {{ user_name }}
     dconf: 
       key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
   
   - name: set wallpaper position
+    become_user: {{ user_name }}
     dconf: 
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
+      
+  - name: copy .bashrc file
+    copy:
+      src: files/bashrc
+      dest: /home/{{user_name}}/.bashrc
+      owner: {{user_name}}
+      group: {{user_name}}
