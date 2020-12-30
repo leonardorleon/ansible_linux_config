@@ -44,13 +44,13 @@ user_name: leonardo
 ## id there are changes in the repository and executes the playbook       
 #  - name: add ansible user
 #    user:
-#      name: velociraptor
+#      name: ansible_user
 #      system: yes
 #
 #  - name: set up sudo for ansible user
 #    copy:
-#      src: files/sudoer_velociraptor
-#      dest: /etc/sudoers.d/velociraptor
+#      src: files/sudoer_ansible
+#      dest: /etc/sudoers.d/ansible
 #      owner: root
 #      group: root
 #      mode: 0440
@@ -58,6 +58,6 @@ user_name: leonardo
 #  - name: add ansible-pull cron job
 #    cron:
 #      name: ansible auto-provision
-#      user: velociraptor
+#      user: ansible_user
 #      minute: "*/10"
 #      job: ansible-pull -o -U [REPLACE WITH URL]
