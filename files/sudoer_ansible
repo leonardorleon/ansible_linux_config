@@ -1,1 +1,1 @@
-ansible ALL=(ALL) NOPASSWD: ALL
+ansible_user ALL=(ALL) NOPASSWD: ALL
